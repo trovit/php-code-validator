@@ -1,0 +1,8 @@
+<?php
+
+class FakeClass
+{
+    public function foo(Foo $foo)
+    {
+
+}

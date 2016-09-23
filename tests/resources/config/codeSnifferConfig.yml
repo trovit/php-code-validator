@@ -1,0 +1,10 @@
+standards:
+  - 'PSR2'
+  - '%s/../resources/CustomStandard/ruleset.xml'
+reports:
+    json: ~
+verbosity: 0
+showProgress: false
+interactive: false
+cache: false
+showSources: true

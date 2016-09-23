@@ -1,0 +1,10 @@
+<?php
+
+
+class FakeClass
+{
+    public function foo(Foo $foo)
+    {
+        var_dump('bar')
+    }
+}
