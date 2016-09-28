@@ -19,11 +19,11 @@ class PhpCodeValidatorResult
     private $warnings = [];
 
     /**+
-     * @param $message
-     * @param $errorName
-     * @param $errorType
-     * @param null $lineNum
-     * @param null $columnNum
+     * @param string   $message
+     * @param string   $errorName
+     * @param int      $errorType PhpCodeValidatorProblem::*_TYPE
+     * @param int|null $lineNum
+     * @param int|null $columnNum
      */
     public function addProblem(
         $message,
@@ -42,10 +42,10 @@ class PhpCodeValidatorResult
     /**
      * Add a validator error
      *
-     * @param string $message
-     * @param string $errorName
-     * @param int $lineNum
-     * @param int $columnNum
+     * @param string   $message
+     * @param string   $errorName
+     * @param int|null $lineNum
+     * @param int|null $columnNum
      */
     public function addError(
         $message,
@@ -64,10 +64,10 @@ class PhpCodeValidatorResult
     /**
      * Add a validator error
      *
-     * @param string $message
-     * @param string $errorName
-     * @param int $lineNum
-     * @param int $columnNum
+     * @param string   $message
+     * @param string   $errorName
+     * @param int|null $lineNum
+     * @param int|null $columnNum
      */
     public function addWarning(
         $message,

@@ -17,8 +17,7 @@ class PhpCodeValidatorProblem
     private $message;
 
     /**
-     * @var int 0 => warning
-     *          1 => error
+     * @var int self::ERROR_TYPE or self::WARNING_TYPE
      */
     private $errorType;
 
@@ -56,7 +55,7 @@ class PhpCodeValidatorProblem
     }
 
     /**
-     * @return int
+     * @return int self::*_TYPE
      */
     public function getErrorType()
     {
@@ -64,7 +63,7 @@ class PhpCodeValidatorProblem
     }
 
     /**
-     * @param int $errorType
+     * @param int $errorType self::*_TYPE
      * @return PhpCodeValidatorProblem
      */
     public function setErrorType($errorType)
