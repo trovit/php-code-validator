@@ -45,7 +45,7 @@ class ValidatorManager
             if (!$validator instanceof Validator) {
                 throw new BadClassProvidedException('Class should be a formatter');
             }
-            $problems += $validator->checkCode($code)->getProblems();
+            $problems = $validator->checkCode($code)->getProblems();
         }
 
         return $problems;

@@ -3,8 +3,8 @@ namespace Trovit\PhpCodeValidator\Tests\Unit;
 
 use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
 use Trovit\PhpCodeValidator\Exception\BadClassProvidedException;
-use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 use Trovit\PhpCodeValidator\Model\Managers\ValidatorManager;
+use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 use Trovit\PhpCodeValidator\Model\Validators\ParallelLintValidator;
 
 /**
@@ -19,19 +19,29 @@ class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
         $codeSnifferValidatorMock = $this->getCodeSnifferValidatorMock();
         $parallelLintValidator = $this->getParallelLintValidatorMock();
 
+        $codeSnifferValidatorResult = new PhpCodeValidatorResult();
+        $codeSnifferValidatorResult->addError(
+            'Test code sniffer error',
+            'codeSniffer'
+        );
+
         $codeSnifferValidatorMock
             ->expects($this->once())
             ->method('checkCode')
-            ->willReturn(new PhpCodeValidatorResult());
+            ->willReturn($codeSnifferValidatorResult);
 
         $parallelLintValidator
-            ->expects($this->once())
-            ->method('checkCode')
-            ->willReturn(new PhpCodeValidatorResult());
+            ->expects($this->never())
+            ->method('checkCode');
 
-        (new ValidatorManager(
+        $problems = (new ValidatorManager(
             [$codeSnifferValidatorMock, $parallelLintValidator]
         ))->execute('code');
+
+        static::assertEquals(
+            $codeSnifferValidatorResult->getProblems(),
+            $problems
+        );
     }
 
     public function testExecuteManagerWithBadValidatorClass()
