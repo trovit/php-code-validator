@@ -1,0 +1,87 @@
+{
+    "totals": {
+        "errors": 5,
+        "warnings": 3,
+        "fixable": 4
+    },
+    "files": {
+        "\/fake_file.php": {
+            "errors": 5,
+            "warnings": 3,
+            "messages": [
+                {
+                    "message": "A file should declare new symbols (classes, functions, constants, etc.) and cause no other side effects, or it should execute logic with side effects, but should not do both. The first symbol is defined on line 5 and the first side effect is on line 3.",
+                    "source": "PSR1.Files.SideEffects.FoundWithSymbols",
+                    "severity": 5,
+                    "type": "WARNING",
+                    "line": 1,
+                    "column": 1,
+                    "fixable": false
+                },
+                {
+                    "message": "Possible parse error: class missing opening or closing brace",
+                    "source": "PSR2.Classes.ClassDeclaration.MissingBrace",
+                    "severity": 5,
+                    "type": "WARNING",
+                    "line": 3,
+                    "column": 1,
+                    "fixable": false
+                },
+                {
+                    "message": "Possible parse error: class missing opening or closing brace",
+                    "source": "Squiz.Classes.ValidClassName.MissingBrace",
+                    "severity": 5,
+                    "type": "WARNING",
+                    "line": 3,
+                    "column": 1,
+                    "fixable": false
+                },
+                {
+                    "message": "Line indented incorrectly; expected 0 spaces, found 4",
+                    "source": "Generic.WhiteSpace.ScopeIndent.IncorrectExact",
+                    "severity": 5,
+                    "type": "ERROR",
+                    "line": 5,
+                    "column": 5,
+                    "fixable": true
+                },
+                {
+                    "message": "Function base64_decode() is not allowed",
+                    "source": "..CustomStandard_Sniffs_PHP_WhiteListFunctions.Not Allowed",
+                    "severity": 5,
+                    "type": "ERROR",
+                    "line": 6,
+                    "column": 9,
+                    "fixable": false
+                },
+                {
+                    "message": "Opening brace should be on the line after the declaration; found 6 blank line(s)",
+                    "source": "Squiz.Functions.MultiLineFunctionDeclaration.BraceSpacing",
+                    "severity": 5,
+                    "type": "ERROR",
+                    "line": 12,
+                    "column": 5,
+                    "fixable": true
+                },
+                {
+                    "message": "Opening brace should be on the line after the declaration; found 6 blank line(s)",
+                    "source": "Generic.Functions.OpeningFunctionBraceBsdAllman.BraceSpacing",
+                    "severity": 5,
+                    "type": "ERROR",
+                    "line": 12,
+                    "column": 5,
+                    "fixable": true
+                },
+                {
+                    "message": "Closing brace indented incorrectly; expected 4 spaces, found 0",
+                    "source": "Squiz.WhiteSpace.ScopeClosingBrace.Indent",
+                    "severity": 5,
+                    "type": "ERROR",
+                    "line": 14,
+                    "column": 1,
+                    "fixable": true
+                }
+            ]
+        }
+    }
+}

@@ -14,7 +14,7 @@ use Trovit\TemporaryFilesystem\FileHandler;
  */
 class ParallelLintValidator extends Validator
 {
-    const ERROR_NAME = 'Php Syntax Error';
+    const ERROR_NAME = 'Parallel Lint Error';
 
     /**
      * @var FileHandler
@@ -37,20 +37,18 @@ class ParallelLintValidator extends Validator
      */
     public function checkCode($code)
     {
-        $result = new PhpCodeValidatorResult();
-
-        $parallelLint = new ParallelLint(PhpExecutable::getPhpExecutable('php'));
+        $result = $this->getPhpCodeValidatorResult();
 
         $filePath = $this->fileHandler->createTemporaryFileFromString($code);
 
-        $syntaxErrors = $parallelLint->lint([$filePath]);
+        $syntaxErrors = $this->getParallelLint()->lint([$filePath]);
 
         if ($syntaxErrors->hasSyntaxError()) {
-            foreach ($syntaxErrors->getErrors() as $error) {
+            foreach ($syntaxErrors->getErrors() as $syntaxError) {
                 $result->addError(
-                    $error->getNormalizedMessage(),
+                    $syntaxError->getNormalizedMessage(),
                     self::ERROR_NAME,
-                    $error->getLine()
+                    $syntaxError->getLine()
                 );
             }
         }
@@ -58,5 +56,21 @@ class ParallelLintValidator extends Validator
         $this->fileHandler->deleteTemporaryFile($filePath);
 
         return $result;
+    }
+
+    /**
+     * @return ParallelLint
+     */
+    public function getParallelLint()
+    {
+        return new ParallelLint(PhpExecutable::getPhpExecutable('php'));
+    }
+
+    /**
+     * @return PhpCodeValidatorResult
+     */
+    public function getPhpCodeValidatorResult()
+    {
+        return new PhpCodeValidatorResult();
     }
 }

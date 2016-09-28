@@ -34,7 +34,7 @@ class PhpCodeValidatorResult
     ) {
         if ($errorType === PhpCodeValidatorProblem::ERROR_TYPE) {
             $this->addError($message, $errorName, $lineNum, $columnNum);
-        } else if ($errorType === PhpCodeValidatorProblem::WARNING_TYPE) {
+        } elseif ($errorType === PhpCodeValidatorProblem::WARNING_TYPE) {
             $this->addWarning($message, $errorName, $lineNum, $columnNum);
         }
     }

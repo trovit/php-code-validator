@@ -9,7 +9,7 @@ namespace Trovit\PhpCodeValidator\Entity;
 class PhpCodeValidatorProblem
 {
     const ERROR_TYPE = 1;
-    const WARNING_TYPE = 0;
+    const WARNING_TYPE = 2;
 
     /**
      * @var string
@@ -126,5 +126,4 @@ class PhpCodeValidatorProblem
         $this->errorName = $errorName;
         return $this;
     }
-
 }

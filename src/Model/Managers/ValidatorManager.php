@@ -39,16 +39,15 @@ class ValidatorManager
      */
     public function execute($code)
     {
-        $validatorErrors = [];
-        for ($i = 0, $max = count($this->validatorsClasses); $i < $max && !array_filter($validatorErrors); $i++) {
+        $problems = [];
+        for ($i = 0, $max = count($this->validatorsClasses); $i < $max && !array_filter($problems); $i++) {
             $validator = $this->validatorsClasses[$i];
-            if(!$validator instanceof Validator){
+            if (!$validator instanceof Validator) {
                 throw new BadClassProvidedException('Class should be a formatter');
             }
-            $validator->checkCode($code);
-            $validatorErrors = $validator->getPhpCodeValidatorProblems();
+            $problems += $validator->checkCode($code)->getProblems();
         }
 
-        return $validatorErrors;
+        return $problems;
     }
 }

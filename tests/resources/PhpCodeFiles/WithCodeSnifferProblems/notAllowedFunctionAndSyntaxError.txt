@@ -3,13 +3,12 @@
 class FakeClass
 {
     public function foo(Foo $foo)
-        parse_yaml('asd\nasd');
+        base64_decode('asd\nasd');
 
 
 
 
 
-        echo foo
     {
 
 }

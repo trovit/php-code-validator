@@ -2,7 +2,7 @@
 namespace Trovit\PhpCodeValidator\Tests\Functional\Sniffs;
 
 use Symfony\Component\Yaml\Yaml;
-use  Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem;
+use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem;
 use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 
 /**
@@ -26,7 +26,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
      *      ]
      * ]
      */
-    public abstract function getDataSet();
+    abstract public function getDataSet();
 
     public function setUp()
     {
@@ -66,7 +66,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
         $path = explode('\\', get_class($this));
         $sniffName = array_pop($path);
         $this->codeSnifferTool->setOverrideSettings(
-            [ 'sniffs' => ['..'.preg_replace('|SniffTest$|','', $sniffName)] ]
+            [ 'sniffs' => ['..'.preg_replace('|SniffTest$|', '', $sniffName)] ]
         );
     }
 
@@ -76,7 +76,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     private function getConfigCodeSniffer()
     {
         $config = Yaml::parse(file_get_contents(__DIR__.'/../../resources/config/codeSnifferConfig.yml'));
-        $config['standards'][1] = sprintf($config['standards'][1], __DIR__.'');
+        $config['standards'][1] = sprintf($config['standards'][1], __DIR__.'/../..');
         return $config;
     }
 }

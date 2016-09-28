@@ -2,6 +2,8 @@
 
 namespace Trovit\PhpCodeValidator\Model\Validators;
 
+use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
+
 /**
  * Class Validator
  * @package Trovit\PhpCodeValidator\Model
@@ -10,6 +12,7 @@ abstract class Validator
 {
     /**
      * @param string $code
+     * @return PhpCodeValidatorResult
      */
-    public abstract function checkCode($code);
+    abstract public function checkCode($code);
 }

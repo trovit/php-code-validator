@@ -19,8 +19,13 @@
     },
     "autoload": {
         "psr-4": {
-            "Trovit\\PhpCodeValidator\\Tests\\": "tests/",
-            "Trovit\\PhpCodeValidator\\": "src/"
+            "Trovit\\PhpCodeValidator\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Trovit\\PhpCodeValidator\\Tests\\Functional\\": "tests/functional",
+            "Trovit\\PhpCodeValidator\\Tests\\Unit\\": "tests/unit"
         }
     }
 }

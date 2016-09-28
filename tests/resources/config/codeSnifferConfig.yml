@@ -1,6 +1,6 @@
 standards:
   - 'PSR2'
-  - '%s/../resources/CustomStandard/ruleset.xml'
+  - '%s/resources/CustomStandard/ruleset.xml'
 reports:
     json: ~
 verbosity: 0
