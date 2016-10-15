@@ -4,6 +4,11 @@ php:
     - 5.6
     - 7.0
 
+
+before_install:
+    - composer selfupdate
+    - composer global require hirak/prestissimo
+
 install:
     - composer install --dev --no-interaction --prefer-dist
     - phpenv rehash
