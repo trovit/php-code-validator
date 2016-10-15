@@ -100,6 +100,14 @@ class PhpCodeValidatorResult
     }
 
     /**
+     * @return bool
+     */
+    public function hasProblems()
+    {
+        return $this->hasErrors() || $this->hasWarnings();
+    }
+
+    /**
      * @return PhpCodeValidatorProblem[]
      */
     public function getErrors()
@@ -121,5 +129,21 @@ class PhpCodeValidatorResult
     public function getProblems()
     {
         return array_merge($this->errors, $this->warnings);
+    }
+
+    /**
+     * @param $problems PhpCodeValidatorProblem[]
+     */
+    public function addProblems($problems)
+    {
+        foreach ($problems as $problem){
+            $this->addProblem(
+                $problem->getMessage(),
+                $problem->getErrorName(),
+                $problem->getErrorType(),
+                $problem->getLineNum(),
+                $problem->getColumnNum()
+            );
+        }
     }
 }

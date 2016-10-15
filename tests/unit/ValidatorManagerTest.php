@@ -34,13 +34,13 @@ class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
             ->expects($this->never())
             ->method('checkCode');
 
-        $problems = (new ValidatorManager(
+        $result = (new ValidatorManager(
             [$codeSnifferValidatorMock, $parallelLintValidator]
         ))->execute('code');
 
         static::assertEquals(
             $codeSnifferValidatorResult->getProblems(),
-            $problems
+            $result->getProblems()
         );
     }
 

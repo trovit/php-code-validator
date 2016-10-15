@@ -26,7 +26,9 @@ class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
         $code = file_get_contents(__DIR__ .
             '/../resources/PhpCodeFiles/WithCodeSnifferProblems'.
             '/notAllowedFunctionAndSyntaxError.txt');
-        $problems = $sut->execute($code);
+        $result = $sut->execute($code);
+        $this->assertTrue($result->hasProblems());
+        $problems = $result->getProblems();
         $this->assertCount(8, $problems);
         $this->assertEquals(
             (new PhpCodeValidatorProblem())
@@ -71,8 +73,9 @@ class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
             ]
         );
         $code = file_get_contents(__DIR__.'/../resources/PhpCodeFiles/WithPhpSyntaxErrors/missingKey.txt');
-        $problems = $sut->execute($code);
-
+        $result = $sut->execute($code);
+        $this->assertTrue($result->hasProblems());
+        $problems = $result->getProblems();
         $this->assertCount(1, $problems);
         $this->assertEquals(
             (new PhpCodeValidatorProblem())
@@ -87,8 +90,8 @@ class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
     public function testExecuteManagerWithoutValidators()
     {
         $sut = new ValidatorManager([]);
-        $problems = $sut->execute('');
-        $this->assertEmpty($problems);
+        $result = $sut->execute('');
+        $this->assertFalse($result->hasProblems());
     }
 
     private function getCodeSnifferConfig()
