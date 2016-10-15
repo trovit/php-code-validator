@@ -4,8 +4,8 @@ php:
     - 5.6
     - 7.0
 
-install:
-    - travis_retry composer update --no-progress --profile --prefer-dist --no-scripts --no-interaction
+before_script:
+    - composer install --no-progress --profile --prefer-dist --no-scripts --no-interaction
 
 script:
     - ./vendor/bin/grumphp run
