@@ -1,10 +1,9 @@
 <?php
+
 namespace Trovit\PhpCodeValidator\Entity;
 
 /**
- * Class PhpCodeValidatorResult
- *
- * @package Trovit\PhpCodeValidator\Entity
+ * Class PhpCodeValidatorResult.
  */
 class PhpCodeValidatorResult
 {
@@ -40,7 +39,7 @@ class PhpCodeValidatorResult
     }
 
     /**
-     * Add a validator error
+     * Add a validator error.
      *
      * @param string   $message
      * @param string   $errorName
@@ -62,7 +61,7 @@ class PhpCodeValidatorResult
     }
 
     /**
-     * Add a validator error
+     * Add a validator error.
      *
      * @param string   $message
      * @param string   $errorName
@@ -136,7 +135,7 @@ class PhpCodeValidatorResult
      */
     public function addProblems($problems)
     {
-        foreach ($problems as $problem){
+        foreach ($problems as $problem) {
             $this->addProblem(
                 $problem->getMessage(),
                 $problem->getErrorName(),

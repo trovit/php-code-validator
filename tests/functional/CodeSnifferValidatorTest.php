@@ -1,4 +1,5 @@
 <?php
+
 namespace Trovit\PhpCodeValidator\Tests\Functional;
 
 use Symfony\Component\Yaml\Yaml;
@@ -7,8 +8,7 @@ use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 use Trovit\PhpCodeValidator\Model\Validators\ParallelLintValidator;
 
 /**
- * Class CodeSnifferValidatorTest
- * @package  Trovit\PhpCodeValidator\Tests\Model
+ * Class CodeSnifferValidatorTest.
  */
 class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -18,7 +18,7 @@ class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
     private $sut;
 
     /**
-     * Sets up the required objects
+     * Sets up the required objects.
      */
     protected function setUp()
     {
@@ -29,7 +29,7 @@ class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testMissingKeyInFormatAd()
     {
-        $filePath = __DIR__ .'/../resources/PhpCodeFiles/WithCodeSnifferProblems/notAllowedFunctionAndSyntaxError.txt';
+        $filePath = __DIR__.'/../resources/PhpCodeFiles/WithCodeSnifferProblems/notAllowedFunctionAndSyntaxError.txt';
         $PhpCodeValidatorProblems = $this->getErrorsFromFilePath($filePath);
 
         $this->assertCount(8, $PhpCodeValidatorProblems);
@@ -53,6 +53,7 @@ class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $filePath
+     *
      * @return \Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem[]
      */
     private function getErrorsFromFilePath($filePath)
@@ -64,6 +65,7 @@ class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
     {
         $config = Yaml::parse(file_get_contents(__DIR__.'/../resources/config/codeSnifferConfig.yml'));
         $config['standards'][1] = sprintf($config['standards'][1], __DIR__.'/../');
+
         return $config;
     }
 }

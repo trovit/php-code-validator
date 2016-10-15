@@ -1,12 +1,12 @@
 <?php
+
 namespace Trovit\PhpCodeValidator\Tests\Functional;
 
 use Trovit\PhpCodeValidator\Model\Validators\ParallelLintValidator;
 use Trovit\TemporaryFilesystem\FileHandler;
 
 /**
- * Class ParallelLintValidator
- * @package  Trovit\PhpCodeValidator\Tests\Model
+ * Class ParallelLintValidator.
  */
 class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 {
@@ -16,7 +16,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
     private $sut;
 
     /**
-     * Sets up the required objects
+     * Sets up the required objects.
      */
     protected function setUp()
     {
@@ -27,7 +27,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testMissingKeyInFormatAd()
     {
-        $filePath = __DIR__ .'/../resources/PhpCodeFiles/WithPhpSyntaxErrors/missingKey.txt';
+        $filePath = __DIR__.'/../resources/PhpCodeFiles/WithPhpSyntaxErrors/missingKey.txt';
         $PhpCodeValidatorProblems = $this->getErrorsFromFilePath($filePath);
         $this->assertCount(1, $PhpCodeValidatorProblems);
         $this->assertEquals(1, $PhpCodeValidatorProblems[0]->getErrorType());
@@ -40,7 +40,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     public function testMissingSemiColonInAddCategoryParser()
     {
-        $filePath = __DIR__ .'/../resources/PhpCodeFiles/WithPhpSyntaxErrors/missingSemiColon.txt';
+        $filePath = __DIR__.'/../resources/PhpCodeFiles/WithPhpSyntaxErrors/missingSemiColon.txt';
         $PhpCodeValidatorProblems = $this->getErrorsFromFilePath($filePath);
 
         $this->assertCount(1, $PhpCodeValidatorProblems);
@@ -54,6 +54,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $filePath
+     *
      * @return \Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem[]
      */
     private function getErrorsFromFilePath($filePath)

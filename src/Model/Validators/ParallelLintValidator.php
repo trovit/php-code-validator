@@ -8,9 +8,7 @@ use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
 use Trovit\TemporaryFilesystem\FileHandler;
 
 /**
- * Class ParallelLintValidator
- *
- * @package Trovit\PhpCodeValidator\Model\Validators
+ * Class ParallelLintValidator.
  */
 class ParallelLintValidator extends Validator
 {
@@ -23,6 +21,7 @@ class ParallelLintValidator extends Validator
 
     /**
      * PhpFormatterValidatorTool constructor.
+     *
      * @param FileHandler $fileHandler
      */
     public function __construct(FileHandler $fileHandler)
@@ -32,7 +31,9 @@ class ParallelLintValidator extends Validator
 
     /**
      * @param string $code
+     *
      * @return PhpCodeValidatorResult
+     *
      * @throws \Exception
      */
     public function checkCode($code)

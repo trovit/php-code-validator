@@ -1,5 +1,6 @@
 <?php
-namespace Trovit\PhpCodeValidator\Tests\Unit;
+
+namespace Trovit\PhpCodeValidator\tests\unit;
 
 use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
 use Trovit\PhpCodeValidator\Exception\BadClassProvidedException;
@@ -8,9 +9,7 @@ use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 use Trovit\PhpCodeValidator\Model\Validators\ParallelLintValidator;
 
 /**
- * Class ValidatorManagerTest
- *
- * @package Kolekti\PhpCodeValidatorBundle\Tests\Model
+ * Class ValidatorManagerTest.
  */
 class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
 {
@@ -46,7 +45,7 @@ class ValidatorManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testExecuteManagerWithBadValidatorClass()
     {
-        $sut = new ValidatorManager([new \stdClass]);
+        $sut = new ValidatorManager([new \stdClass()]);
         $this->expectException(BadClassProvidedException::class);
         $sut->execute('');
     }

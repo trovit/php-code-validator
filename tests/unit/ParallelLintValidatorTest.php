@@ -1,5 +1,6 @@
 <?php
-namespace Trovit\PhpCodeValidator\Tests\Unit;
+
+namespace Trovit\PhpCodeValidator\tests\unit;
 
 use JakubOnderka\PhpParallelLint\SyntaxError;
 use JakubOnderka\PhpParallelLint\ParallelLint;
@@ -9,12 +10,10 @@ use Trovit\PhpCodeValidator\Model\Validators\ParallelLintValidator;
 use Trovit\TemporaryFilesystem\FileHandler;
 
 /**
- * Class ParallelLintValidator
- * @package  Trovit\PhpCodeValidator\Tests\Model
+ * Class ParallelLintValidator.
  */
 class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @dataProvider getDataProvider
      */
@@ -24,14 +23,14 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
         $parallelLintValidatorMock->checkCode('code');
     }
 
-
     /**
-     * Data provider for testCheckCode
+     * Data provider for testCheckCode.
+     *
      * @return array
      */
     public function getDataProvider()
     {
-        return [[0,1,2]];
+        return [[0, 1, 2]];
     }
 
     public function testCheckCodeWithBadFile()
@@ -51,6 +50,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $numErrors
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getParallelLintValidatorMock($numErrors)
@@ -61,7 +61,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
                 [
                     '__construct',
                     'getParallelLint',
-                    'getPhpCodeValidatorResult'
+                    'getPhpCodeValidatorResult',
                 ]
             )
             ->setConstructorArgs([$this->getFileHandlerMock()])
@@ -113,6 +113,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param int $numErrors
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getParallelLintResultMock($numErrors = 0)
@@ -147,6 +148,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $numErrors
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getPhpParallelLitErrorMock($numErrors)
@@ -169,6 +171,7 @@ class ParallelLintValidatorTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @param $numErrors
+     *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
     private function getPhpCodeResultMock($numErrors)

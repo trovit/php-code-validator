@@ -1,4 +1,5 @@
 <?php
+
 namespace Trovit\PhpCodeValidator\Tests\Functional\Sniffs;
 
 use Symfony\Component\Yaml\Yaml;
@@ -6,8 +7,7 @@ use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem;
 use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 
 /**
- * Class BaseSniffs
- * @package  Trovit\PhpCodeValidator\Tests\Model\Sniffs
+ * Class BaseSniffs.
  */
 abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
 {
@@ -18,6 +18,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
 
     /**
      * @return array of dataSets arrays with the following structure
+     *
      * @example
      * [
      *      <checkDescription> => [
@@ -34,12 +35,12 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
             $this->getConfigCodeSniffer()
         );
         $this->setSpecificSniff();
-
     }
 
     /**
      * @dataProvider additionProvider
-     * @param string $code the code to test
+     *
+     * @param string                    $code           the code to test
      * @param PhpCodeValidatorProblem[] $expectedErrors array of PhpCodeValidatorProblem
      */
     public function testSniff($code, $expectedErrors)
@@ -49,7 +50,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Provides the dataSet to testSniff
+     * Provides the dataSet to testSniff.
      *
      * @return array
      */
@@ -66,7 +67,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
         $path = explode('\\', get_class($this));
         $sniffName = array_pop($path);
         $this->codeSnifferTool->setOverrideSettings(
-            [ 'sniffs' => ['..'.preg_replace('|SniffTest$|', '', $sniffName)] ]
+            ['sniffs' => ['..'.preg_replace('|SniffTest$|', '', $sniffName)]]
         );
     }
 
@@ -77,6 +78,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     {
         $config = Yaml::parse(file_get_contents(__DIR__.'/../../resources/config/codeSnifferConfig.yml'));
         $config['standards'][1] = sprintf($config['standards'][1], __DIR__.'/../..');
+
         return $config;
     }
 }

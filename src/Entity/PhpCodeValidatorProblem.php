@@ -1,10 +1,9 @@
 <?php
+
 namespace Trovit\PhpCodeValidator\Entity;
 
 /**
- * Class PhpCodeValidatorProblem
- *
- * @package Trovit\PhpCodeValidator\Entity
+ * Class PhpCodeValidatorProblem.
  */
 class PhpCodeValidatorProblem
 {
@@ -46,11 +45,13 @@ class PhpCodeValidatorProblem
 
     /**
      * @param string $message
+     *
      * @return PhpCodeValidatorProblem
      */
     public function setMessage($message)
     {
         $this->message = $message;
+
         return $this;
     }
 
@@ -64,11 +65,13 @@ class PhpCodeValidatorProblem
 
     /**
      * @param int $errorType self::*_TYPE
+     *
      * @return PhpCodeValidatorProblem
      */
     public function setErrorType($errorType)
     {
         $this->errorType = $errorType;
+
         return $this;
     }
 
@@ -82,11 +85,13 @@ class PhpCodeValidatorProblem
 
     /**
      * @param int $lineNum
+     *
      * @return PhpCodeValidatorProblem
      */
     public function setLineNum($lineNum)
     {
         $this->lineNum = $lineNum;
+
         return $this;
     }
 
@@ -100,11 +105,13 @@ class PhpCodeValidatorProblem
 
     /**
      * @param int $columnNum
+     *
      * @return PhpCodeValidatorProblem
      */
     public function setColumnNum($columnNum)
     {
         $this->columnNum = $columnNum;
+
         return $this;
     }
 
@@ -118,11 +125,13 @@ class PhpCodeValidatorProblem
 
     /**
      * @param string $errorName
+     *
      * @return PhpCodeValidatorProblem
      */
     public function setErrorName($errorName)
     {
         $this->errorName = $errorName;
+
         return $this;
     }
 }

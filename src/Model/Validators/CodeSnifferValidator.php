@@ -10,9 +10,7 @@ use PHP_CodeSniffer\Runner;
 use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
 
 /**
- * Class CodeSnifferValidator
- *
- * @package Trovit\PhpCodeValidator\Model\Validators
+ * Class CodeSnifferValidator.
  */
 class CodeSnifferValidator extends Validator
 {
@@ -42,6 +40,7 @@ class CodeSnifferValidator extends Validator
 
     /**
      * @param string $code
+     *
      * @return PhpCodeValidatorResult
      */
     public function checkCode($code)
@@ -61,6 +60,7 @@ class CodeSnifferValidator extends Validator
         $runner->reporter->printReports();
         $generatedJsonReport = ob_get_contents();
         ob_end_clean();
+
         return $this->buildErrorsFromJson(json_decode($generatedJsonReport));
     }
 
@@ -74,6 +74,7 @@ class CodeSnifferValidator extends Validator
 
     /**
      * @param \stdClass $generatedJsonReport
+     *
      * @return PhpCodeValidatorResult
      */
     public function buildErrorsFromJson($generatedJsonReport)
@@ -94,12 +95,13 @@ class CodeSnifferValidator extends Validator
                 );
             }
         }
+
         return $result;
     }
 
     /**
      * @param Config $config
-     * @param array $settings
+     * @param array  $settings
      */
     public function populateConfig(Config $config, $settings)
     {
@@ -123,11 +125,13 @@ class CodeSnifferValidator extends Validator
     public function buildDefaultConfig()
     {
         $_SERVER['argv'] = [];
+
         return new Config();
     }
 
     /**
      * @param $runner
+     *
      * @return Reporter
      */
     public function buildReporter($runner)
@@ -138,6 +142,7 @@ class CodeSnifferValidator extends Validator
     /**
      * @param $code
      * @param $runner
+     *
      * @return DummyFile
      */
     public function buildDummyFile($code, $runner)

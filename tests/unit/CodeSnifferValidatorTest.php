@@ -1,25 +1,19 @@
 <?php
-namespace Trovit\PhpCodeValidator\Tests\Unit;
 
-use JakubOnderka\PhpParallelLint\SyntaxError;
-use JakubOnderka\PhpParallelLint\ParallelLint;
-use JakubOnderka\PhpParallelLint\Result;
+namespace Trovit\PhpCodeValidator\tests\unit;
+
 use PHP_CodeSniffer\Config;
 use PHP_CodeSniffer\Files\DummyFile;
 use PHP_CodeSniffer\Reporter;
 use PHP_CodeSniffer\Runner;
 use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
 use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
-use Trovit\PhpCodeValidator\Model\Validators\ParallelLintValidator;
-use Trovit\TemporaryFilesystem\FileHandler;
 
 /**
- * Class CodeSnifferValidatorTest
- * @package  Trovit\PhpCodeValidator\Tests\Model
+ * Class CodeSnifferValidatorTest.
  */
 class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testCheckCode()
     {
         $parallelLintValidatorMock = $this->getCodeSnifferValidatorCheckCodeMock();
@@ -48,7 +42,7 @@ class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
                     'buildDefaultConfig',
                     'buildReporter',
                     'buildDummyFile',
-                    'buildErrorsFromJson'
+                    'buildErrorsFromJson',
                 ]
             )
             ->getMock();
@@ -134,7 +128,6 @@ class CodeSnifferValidatorTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->getMock();
     }
-
 
     /**
      * @return \PHPUnit_Framework_MockObject_MockObject

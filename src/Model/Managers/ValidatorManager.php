@@ -1,19 +1,15 @@
 <?php
 
-
 namespace Trovit\PhpCodeValidator\Model\Managers;
 
-use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem;
 use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorResult;
 use Trovit\PhpCodeValidator\Exception\BadClassProvidedException;
 use Trovit\PhpCodeValidator\Model\Validators\Validator;
 
 /**
- * Class ValidatorManager
+ * Class ValidatorManager.
  *
  * This class execute all the validators in the config
- *
- * @package Trovit\PhpCodeValidator\Model\Managers
  */
 class ValidatorManager
 {
@@ -24,6 +20,7 @@ class ValidatorManager
 
     /**
      * FormatterManager constructor.
+     *
      * @param Validator[] $validatorsClasses
      */
     public function __construct(array $validatorsClasses)
@@ -35,14 +32,16 @@ class ValidatorManager
      * Execute a group of strategies in lazy mode.
      *
      * @param string $code
+     *
      * @return PhpCodeValidatorResult
+     *
      * @throws BadClassProvidedException
      */
     public function execute($code)
     {
         $result = new PhpCodeValidatorResult();
         $max = count($this->validatorsClasses);
-        for ($i = 0; $i < $max && !$result->hasProblems(); $i++) {
+        for ($i = 0; $i < $max && !$result->hasProblems(); ++$i) {
             $validator = $this->validatorsClasses[$i];
             if (!$validator instanceof Validator) {
                 throw new BadClassProvidedException('Class should be a formatter');
