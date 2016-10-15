@@ -5,7 +5,8 @@ php:
     - 7.0
 
 install:
-  - composer install --dev --no-interaction --prefer-dist
+    - composer install --dev --no-interaction --prefer-dist
+    - phpenv rehash
 
 script:
     - ./vendor/bin/grumphp run
