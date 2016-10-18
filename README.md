@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/trovit/php-code-validator.svg?branch=master)](https://travis-ci.org/trovit/php-code-validator)  
 
 Provides a basic system to organize and execute php code validators.
-There's a [Symfony bundle](https://github.com/trovit/php-code-validator) with this component.
+
+There's a [Symfony bundle](https://github.com/trovit/php-code-validator-bundle) with this component.
 
 ## Code structure
 
