@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4d989e10022fa0f6b8a0e32644fcdd32",
-    "content-hash": "36fece8df51ccf19cc3f48247bddcaf4",
+    "hash": "3055c2484ba91a4b1271312a7bd48219",
+    "content-hash": "de86a6282e63d791343a31b497b589db",
     "packages": [
         {
             "name": "jakub-onderka/php-parallel-lint",
