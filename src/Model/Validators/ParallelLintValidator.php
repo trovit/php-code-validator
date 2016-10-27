@@ -74,4 +74,12 @@ class ParallelLintValidator extends Validator
     {
         return new PhpCodeValidatorResult();
     }
+
+    /**
+     * @return string
+     */
+    protected function getAdditionalOptionsKey()
+    {
+        return 'parallel_lint';
+    }
 }

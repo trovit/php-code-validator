@@ -22,11 +22,6 @@ class CodeSnifferValidator extends Validator
     private $defaultSettings;
 
     /**
-     * @var array
-     */
-    private $overrideSettings;
-
-    /**
      * CodeSnifferValidatorTool constructor.
      *
      * @param array $settings
@@ -35,7 +30,6 @@ class CodeSnifferValidator extends Validator
         $settings
     ) {
         $this->defaultSettings = $settings;
-        $this->overrideSettings = [];
     }
 
     /**
@@ -49,7 +43,7 @@ class CodeSnifferValidator extends Validator
         $runner->config = $this->buildDefaultConfig();
         $this->populateConfig($runner->config, $this->defaultSettings);
         $runner->init();
-        $this->populateConfig($runner->config, $this->overrideSettings);
+        $this->populateConfig($runner->config, $this->additionalOptions);
         $runner->reporter = $this->buildReporter($runner);
         $file = $this->buildDummyFile($code, $runner);
         $file->path = '/fake_file.php';
@@ -62,14 +56,6 @@ class CodeSnifferValidator extends Validator
         ob_end_clean();
 
         return $this->buildErrorsFromJson(json_decode($generatedJsonReport));
-    }
-
-    /**
-     * @param array $overrideSettings
-     */
-    public function setOverrideSettings(array $overrideSettings)
-    {
-        $this->overrideSettings = $overrideSettings;
     }
 
     /**
@@ -156,5 +142,13 @@ class CodeSnifferValidator extends Validator
     public function getPhpCodeValidatorResult()
     {
         return new PhpCodeValidatorResult();
+    }
+
+    /**
+     * @return string
+     */
+    protected function getAdditionalOptionsKey()
+    {
+        return 'php_code_sniffer';
     }
 }

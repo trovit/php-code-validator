@@ -32,20 +32,23 @@ class ValidatorManager
      * Execute a group of strategies in lazy mode.
      *
      * @param string $code
-     *
+     * @param array $additionalOptions
      * @return PhpCodeValidatorResult
-     *
      * @throws BadClassProvidedException
      */
-    public function execute($code)
+    public function execute($code, $additionalOptions = [])
     {
         $result = new PhpCodeValidatorResult();
         $max = count($this->validatorsClasses);
         for ($i = 0; $i < $max && !$result->hasProblems(); ++$i) {
             $validator = $this->validatorsClasses[$i];
+
             if (!$validator instanceof Validator) {
-                throw new BadClassProvidedException('Class should be a formatter');
+                throw new BadClassProvidedException('Class should extend a Validator class');
             }
+
+            $validator->addAdditionalOptions($additionalOptions);
+
             $result->addProblems(
                 $validator->checkCode($code)->getProblems()
             );

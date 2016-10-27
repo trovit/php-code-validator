@@ -40,13 +40,14 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     /**
      * @dataProvider additionProvider
      *
-     * @param string                    $code           the code to test
-     * @param PhpCodeValidatorProblem[] $expectedErrors array of PhpCodeValidatorProblem
+     * @param string $code the code to test
+     * @param \Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem[] $expectedProblems
      */
-    public function testSniff($code, $expectedErrors)
+    public function testSniff($code, $expectedProblems)
     {
-        $problems = $this->codeSnifferTool->checkCode($code);
-        $this->assertEquals($expectedErrors, $problems->getProblems());
+        $result = $this->codeSnifferTool->checkCode($code);
+        $problems = $result->getProblems();
+        $this->assertEquals($expectedProblems, $problems);
     }
 
     /**
@@ -66,15 +67,20 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     {
         $path = explode('\\', get_class($this));
         $sniffName = array_pop($path);
-        $this->codeSnifferTool->setOverrideSettings(
-            ['sniffs' => ['..'.preg_replace('|SniffTest$|', '', $sniffName)]]
+        $this->codeSnifferTool->addAdditionalOptions(
+            [
+                'php_code_sniffer' =>
+                    [
+                        'sniffs' => ['..'.preg_replace('|SniffTest$|', '', $sniffName)]
+                    ]
+            ]
         );
     }
 
     /**
      * @return array
      */
-    private function getConfigCodeSniffer()
+    protected function getConfigCodeSniffer()
     {
         $config = Yaml::parse(file_get_contents(__DIR__.'/../../resources/config/codeSnifferConfig.yml'));
         $config['standards'][1] = sprintf($config['standards'][1], __DIR__.'/../..');
