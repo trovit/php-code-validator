@@ -37,7 +37,11 @@ abstract class Validator
         $key = $this->getAdditionalOptionsKey();
 
         if (array_key_exists($key, $additionalOptions)) {
-            $this->additionalOptions = $additionalOptions[$key];
+            $this->additionalOptions =
+                array_merge(
+                    $this->additionalOptions,
+                    $additionalOptions[$key]
+                );
         }
     }
 }
