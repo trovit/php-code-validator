@@ -4,6 +4,7 @@ namespace Trovit\PhpCodeValidator\Tests\Functional\Sniffs;
 
 use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem;
 use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
+use Trovit\PhpCodeValidator\Tests\BaseSniffs;
 
 /**
  * Class CustomStandard_Sniffs_PHP_ForbiddenFunctionsSniffTest.

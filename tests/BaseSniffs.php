@@ -1,9 +1,8 @@
 <?php
 
-namespace Trovit\PhpCodeValidator\Tests\Functional\Sniffs;
+namespace Trovit\PhpCodeValidator\Tests;
 
 use Symfony\Component\Yaml\Yaml;
-use Trovit\PhpCodeValidator\Entity\PhpCodeValidatorProblem;
 use Trovit\PhpCodeValidator\Model\Validators\CodeSnifferValidator;
 
 /**
@@ -82,8 +81,8 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
      */
     protected function getConfigCodeSniffer()
     {
-        $config = Yaml::parse(file_get_contents(__DIR__.'/../../resources/config/codeSnifferConfig.yml'));
-        $config['standards'][1] = sprintf($config['standards'][1], __DIR__.'/../..');
+        $config = Yaml::parse(file_get_contents(__DIR__ . '/resources/config/codeSnifferConfig.yml'));
+        $config['standards'][1] = sprintf($config['standards'][1], __DIR__);
 
         return $config;
     }
