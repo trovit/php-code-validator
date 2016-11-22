@@ -42,6 +42,7 @@ class CodeSnifferValidator extends Validator
         $runner = $this->buildRunner();
         $runner->config = $this->buildDefaultConfig();
         $this->populateConfig($runner->config, $this->defaultSettings);
+        $this->modifyStandardDefault($runner->config);
         $runner->init();
         $this->populateConfig($runner->config, $this->additionalOptions);
         $runner->reporter = $this->buildReporter($runner);
@@ -74,8 +75,8 @@ class CodeSnifferValidator extends Validator
                     $codeSnifferProblem->message,
                     self::ERROR_NAME,
                     $codeSnifferProblem->type === 'ERROR'
-                    ? PhpCodeValidatorProblem::ERROR_TYPE
-                    : PhpCodeValidatorProblem::WARNING_TYPE,
+                        ? PhpCodeValidatorProblem::ERROR_TYPE
+                        : PhpCodeValidatorProblem::WARNING_TYPE,
                     $codeSnifferProblem->line,
                     $codeSnifferProblem->column
                 );
@@ -93,6 +94,18 @@ class CodeSnifferValidator extends Validator
     {
         foreach ($settings as $setting => $value) {
             $config->$setting = $value;
+        }
+    }
+
+    /**
+     * @param Config $config
+     * @param array  $settings
+     */
+    private function modifyStandardDefault(Config $config)
+    {
+        if(array_key_exists('standards', $this->additionalOptions)){
+            $config->standards = $this->additionalOptions['standards'];
+            unset($this->additionalOptions['standards']);
         }
     }
 
