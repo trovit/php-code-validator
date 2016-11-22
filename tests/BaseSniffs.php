@@ -60,6 +60,16 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Return the level of verbosity needed for testing purposes
+     *
+     * @return bool
+     */
+    public function getVerbosityLevel()
+    {
+        return 0;
+    }
+
+    /**
      * @throws \Exception
      */
     protected function setSpecificSniff()
@@ -83,6 +93,7 @@ abstract class BaseSniffs extends \PHPUnit_Framework_TestCase
     {
         $config = Yaml::parse(file_get_contents(__DIR__ . '/resources/config/codeSnifferConfig.yml'));
         $config['standards'][1] = sprintf($config['standards'][1], __DIR__);
+        $config['verbosity'] = $this->getVerbosityLevel();
 
         return $config;
     }

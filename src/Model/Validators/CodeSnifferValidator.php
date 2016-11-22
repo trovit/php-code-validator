@@ -103,7 +103,7 @@ class CodeSnifferValidator extends Validator
      */
     private function modifyStandardDefault(Config $config)
     {
-        if(array_key_exists('standards', $this->additionalOptions)){
+        if (array_key_exists('standards', $this->additionalOptions)) {
             $config->standards = $this->additionalOptions['standards'];
             unset($this->additionalOptions['standards']);
         }
